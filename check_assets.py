@@ -65,7 +65,7 @@ def main():
             miss_achv.append(a["id"] + " (期望 " + img + ")")
     # 4. 哲人立绘（已转 JPG 以减小体积）
     miss_portraits = [p["id"] for p in data.get("philosophers", [])
-                      if p["id"] + ".jpg" not in portrait_files]
+                      if p["id"] + ".webp" not in portrait_files]
 
     # 反向检查：找出没有被任何数据引用的孤儿图（疑似命名不一致）
     used = {e["id"] + ".jpg" for e in data.get("events", [])}
