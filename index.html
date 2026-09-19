@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>哲人王</title>
+  <meta name="theme-color" content="#1A1410" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="哲人王" />
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E5%93%B2%E4%BA%BA%E7%8E%8B%22%2C%22short_name%22%3A%22%E5%93%B2%E4%BA%BA%E7%8E%8B%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231A1410%22%2C%22theme_color%22%3A%22%231A1410%22%2C%22start_url%22%3A%22.%22%7D" />
+  <!-- 标题字体 Cinzel 走 Google Fonts CDN；离线或 CDN 失败时自动降级为本地衬线字体 -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=audit_r2" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- 开场导入 -->
+    <section id="intro" class="screen active">
+      <div class="intro-line">你在一座博物馆的「哲人王特展」前驻足。</div>
+      <div class="intro-line">你伸出手，触到了那顶王冠。</div>
+      <div class="intro-line">—— 下一刻，你已坐在王座之上。</div>
+      <div class="intro-skip">点击任意处进入</div>
+    </section>
+
+    <!-- 主菜单 · 博物馆展厅 -->
+    <section id="menu" class="screen">
+      <div class="museum-bg"></div>
+      <div class="floor"></div>
+
+      <!-- 墙上六幅画 -->
+      <div class="wall-frames">
+        <div class="wall-frame" style="background-image:url('assets/portraits/plato.png')"></div>
+        <div class="wall-frame" style="background-image:url('assets/portraits/machiavelli.png')"></div>
+        <div class="wall-frame" style="background-image:url('assets/portraits/laozi.png')"></div>
+        <div class="wall-frame" style="background-image:url('assets/portraits/hobbes.png')"></div>
+        <div class="wall-frame" style="background-image:url('assets/portraits/rousseau.png')"></div>
+        <div class="wall-frame" style="background-image:url('assets/portraits/confucius.png')"></div>
+      </div>
+
+      <!-- 中央皇冠展柜 -->
+      <div class="vitrine">
+        <img class="crown-img" src="assets/scenes/crown.png" alt="哲人王王冠">
+        <div class="plaque">— 哲人王王冠 · 公元前 4 世纪 —</div>
+      </div>
+
+      <h1 class="menu-title">哲人王</h1>
+      <div class="menu-sub">A Tale of Philosopher Kings</div>
+
+      <div class="menu-actions">
+        <button id="btn-new" class="hand-btn">进入议会</button>
+        <div class="menu-secondary">
+          <button id="btn-continue" class="exhibit-btn ghost">继续游戏</button>
+          <button id="btn-codex" class="exhibit-btn ghost">图鉴</button>
+          <button id="btn-howto" class="exhibit-btn ghost">玩法</button>
+        </div>
+      </div>
+      <button id="btn-quit" class="quit-link" style="display:none">退出游戏</button>
+    </section>
+
+    <!-- 存档槽选择 -->
+    <section id="slots" class="screen">
+      <div class="slots-body">
+        <h2 class="codex-title" id="slots-title">选择存档</h2>
+        <div class="codex-sub">— 青铜展签 · 翻开你的城邦篇章 —</div>
+        <div id="slots-list"></div>
+        <button id="btn-slots-back" class="btn-primary" style="margin-top:24px">返 回</button>
+      </div>
+    </section>
+
+    <!-- 议会厅（游戏主界面） -->
+    <section id="game" class="screen">
+      <div id="topbar">
+        <span id="round-indicator">第 1 / 12 轮</span>
+        <div class="top-actions">
+          <button id="btn-mute" class="btn small" aria-label="静音开关" title="静音开关">
+            <svg class="ic-sound" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 9 H7 L11 5 V19 L7 15 H4 Z"/>
+              <path d="M15.5 8.5 a4 4 0 0 1 0 7"/>
+              <path d="M18.5 6 a7.5 7.5 0 0 1 0 12"/>
+            </svg>
+            <svg class="ic-muted" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 9 H7 L11 5 V19 L7 15 H4 Z"/>
+              <line x1="16" y1="9" x2="21" y2="14"/>
+              <line x1="21" y1="9" x2="16" y2="14"/>
+            </svg>
+          </button>
+          <button id="btn-open-status" class="btn small">状态</button>
+          <button id="btn-open-history" class="btn small">历史</button>
+          <button id="btn-quit-game" class="btn small">菜单</button>
+        </div>
+      </div>
+
+      <div id="stat-bar"><!-- JS 生成 4 条数值条 --></div>
+
+      <div id="event-area">
+        <div id="event-scene"></div>
+        <h2 id="event-title"></h2>
+        <div id="event-desc"></div>
+      </div>
+
+
+
+      <div id="choice-area" style="display:none"><!-- 旧卡片列表，先隐藏，改交互用 --></div>
+
+      <div id="result-area" class="hidden">
+        <div id="result-text"></div>
+        <div id="council-area"></div>
+        <button id="btn-next" class="btn-primary">继 续</button>
+      </div>
+
+      <!-- 底部圆章 dock -->
+      <div id="portrait-dock"></div>
+
+      <!-- 顾问面板 -->
+      <div id="advisor-panel">
+        <div class="advisor-portrait-area">
+          <!-- 不写 src 属性：避免空 src 被浏览器当成当前页 URL 请求一次，造成闪破图 -->
+          <img class="advisor-portrait" id="advisor-portrait" alt="" />
+        </div>
+        <div class="advisor-content">
+          <div class="advisor-name" id="advisor-name"></div>
+          <div class="advisor-role" id="advisor-role"></div>
+          <div class="advisor-text" id="advisor-text"></div>
+          <button class="btn-adopt" id="btn-adopt">采 纳</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 图鉴 -->
+    <section id="codex" class="screen">
+      <div class="codex-header">
+        <h2 class="codex-title">图鉴 · 哲人列传</h2>
+        <div class="codex-sub">Museum of Philosopher Kings · Catalogue</div>
+        <button id="btn-codex-back" class="btn small ghost" style="margin-top:12px">返回展厅</button>
+      </div>
+      <div class="codex-body">
+        <div id="codex-run" class="codex-run-stat"></div>
+        <h3 class="codex-section-title">· 六哲人 · 谏言者 ·</h3>
+        <div id="codex-philosophers" class="philosopher-grid"></div>
+
+        <h3 class="codex-section-title">成就 · 金箔印章</h3>
+        <div id="codex-achievements"></div>
+
+        <h3 class="codex-section-title">历代结局</h3>
+        <div id="codex-games"></div>
+      </div>
+    </section>
+
+    <!-- 历史回顾 -->
+    <section id="history" class="screen">
+      <div class="codex-header">
+        <h2 class="codex-title">历史回顾</h2>
+        <button id="btn-history-back" class="btn small ghost" style="margin-top:12px">返回</button>
+      </div>
+      <div id="history-list"></div>
+    </section>
+
+    <!-- 结局 -->
+    <section id="ending" class="screen">
+      <div class="ending-hero">
+        <div>
+          <h2 class="ending-title" id="ending-name"></h2>
+          <div class="ending-sub" id="ending-sub"></div>
+        </div>
+      </div>
+      <div class="ending-body">
+        <div class="ending-prologue" id="ending-desc"></div>
+
+        <div class="exhibit-case">
+          <div class="bronze-ruler">
+            <div class="report-title">出土铭牌 · 王朝四维</div>
+            <div class="report-grid" id="ending-stats"></div>
+          </div>
+
+          <div class="ending-achievements">
+            <h3>随葬金印 · 一生所获</h3>
+            <div class="achievement-row" id="ending-achv"></div>
+          </div>
+        </div>
+
+        <div class="ending-actions">
+          <button id="btn-restart" class="btn-primary">再来一局</button>
+          <button id="btn-tomenu" class="exhibit-btn ghost">回主菜单</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="data.js?v=audit_r2"></script>
+  <script src="engine.js?v=audit_r2"></script>
+  <script src="audio.js?v=audit_r2"></script>
+  <script src="game.js?v=audit_r2"></script>
+
+  <script>
+    // 尘埃粒子已合并到 game.js（原先此处造 24 个、game.js 又造 30 个，主菜单叠了 54 个）
+    // 开场导入 → 主菜单：此处不再自行操作 classList。
+    // 已统一收口到 game.js 的 showScreen("menu")（带定时器 id，用户提前操作时可清除），
+    // 避免「双轨切屏」导致屏幕状态不一致 / 被强行拉回菜单。
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# ===== 方案A：死文件 / 构建产物，本地保留、不进库 =====
+single.html
+scenes.js
+scenes-data.js
+portraits.js
+portraits-data.js
+
+# 备份与临时脚手架
+*.bak
+__dom_test__.js
+__single_test__.js
+__test__.js
+
+# 系统 / 依赖噪声
+.DS_Store
+Thumbs.db
+node_modules/
+*.log
+# ===== 复检新增：本地原型 / 设计样机（正式入口仅 index.html）=====
+/原型*.html
+/UI样机*.html
+/哲人王_设计圣经*.html
+
+# 根目录散落的大图 / 截图（前导 / 只锚定根目录，不影响 assets/ 内游戏资源）
+/*.png
+
+# 开发过程中的原始素材/未使用图，代码零引用，不入库
+assets/archive/
+assets/portraits/_bak/
+assets/portraits_orig_backup/
+__test*/
