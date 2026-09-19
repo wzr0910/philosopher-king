@@ -56,7 +56,7 @@
 
   // ---------- 资源路径集中映射（I4）----------
   const RES = {
-    portrait: (id) => "assets/portraits/" + id + ".png",
+    portrait: (id) => "assets/portraits/" + id + ".jpg",
     scene: (id) => "assets/scenes/" + id + ".jpg",
     ending: (id) => "assets/scenes/ending_" + id + ".jpg",
     achv: {
