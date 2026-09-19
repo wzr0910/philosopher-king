@@ -70,6 +70,30 @@
     }
   };
 
+  // ---------- 背景图预加载 + 微光占位 + 淡入（慢网下不再黑底闪烁）----------
+  const _bgCache = new Set();
+  function preloadImg(url) {
+    if (!url || _bgCache.has(url)) return Promise.resolve(url);
+    return new Promise(function (res) {
+      const im = new Image();
+      im.onload = im.onerror = function () { _bgCache.add(url); res(url); };
+      im.src = url;
+    });
+  }
+  // 空容器（事件横幅）：加载中显示微光占位，加载完成淡入
+  function setSceneBg(el, url) {
+    if (!el) return;
+    el.classList.remove("bg-loaded");
+    el.classList.add("bg-loading");
+    el.style.backgroundImage = "none";
+    preloadImg(url).then(function () {
+      el.style.backgroundImage = "url('" + url + "')";
+      el.classList.remove("bg-loading");
+      void el.offsetWidth;
+      el.classList.add("bg-loaded");
+    });
+  }
+
   // ---------- DOM 辅助（F2）----------
   const $qs = (sel, ctx) => (ctx || document).querySelectorAll(sel);
   const $q = (sel, ctx) => (ctx || document).querySelector(sel);
@@ -253,16 +277,30 @@
           // 单个成就渲染失败不得影响其余成就，也不得阻断游戏
           try {
             const bgFile = RES.achv[item.id] || 'achv_first_crown.jpg';
+            const bgUrl = "assets/scenes/" + bgFile;
             const toast = document.createElement("div");
-            toast.className = "achv-toast";
-            toast.style.background = `linear-gradient(180deg, rgba(20,12,5,.55) 0%, rgba(20,12,5,.75) 100%), url('assets/scenes/${bgFile}') center/cover`;
+            toast.className = "achv-toast bg-loading";
             toast.innerHTML = '<div class="achv-content"><div class="achv-tag">✦ 成就解锁 ✦</div><div class="achv-name">' + item.name + '</div><div class="achv-desc">' + (item.desc || '') + '</div></div>';
-            document.body.appendChild(toast);
-            later(() => toast.classList.add("show"), TUNING.ACHV_FADE_IN_MS);
-            later(() => {
-              toast.classList.remove("show");
-              later(() => toast.remove(), TUNING.ACHV_FADE_OUT_MS);
-            }, TUNING.ACHV_VISIBLE_MS);
+            const showToast = () => {
+              document.body.appendChild(toast);
+              later(() => toast.classList.add("show"), TUNING.ACHV_FADE_IN_MS);
+              later(() => {
+                toast.classList.remove("show");
+                later(() => toast.remove(), TUNING.ACHV_FADE_OUT_MS);
+              }, TUNING.ACHV_VISIBLE_MS);
+            };
+            // 背景图就绪后再弹出；若已缓存则立即弹
+            if (_bgCache.has(bgUrl)) {
+              toast.style.background = `linear-gradient(180deg, rgba(20,12,5,.55) 0%, rgba(20,12,5,.75) 100%), url('${bgUrl}') center/cover`;
+              toast.classList.remove("bg-loading");
+              showToast();
+            } else {
+              preloadImg(bgUrl).then(() => {
+                toast.style.background = `linear-gradient(180deg, rgba(20,12,5,.55) 0%, rgba(20,12,5,.75) 100%), url('${bgUrl}') center/cover`;
+                toast.classList.remove("bg-loading");
+                showToast();
+              });
+            }
           } catch (err) {
             console.warn("[哲人王] 成就弹窗渲染失败：", item && item.id, err);
           }
@@ -385,8 +423,8 @@
 
     // 事件场景插画：根据事件id自动加载对应图
     const sceneEl = $id("event-scene");
-    sceneEl.style.backgroundImage = "url('" + RES.scene(ev.id) + "')";
     sceneEl.style.display = "block";
+    setSceneBg(sceneEl, RES.scene(ev.id));
 
     // 重置界面状态：显示事件区，隐藏结果区和顾问面板
     $id("result-area").classList.add("hidden");
@@ -667,6 +705,7 @@ const endingEl = $id('ending');
     endingEl.style.backgroundPosition = "center";
     const probe = new Image();
     probe.onload = () => {
+      // 图片真正加载成功再叠到渐变兜底之上，加载期间只显示暖褐渐变，不黑底、不裂图
       endingEl.style.backgroundImage =
         "linear-gradient(180deg, rgba(20,15,12,.42) 0%, rgba(20,15,12,.70) 100%), url('" + endingImg + "')";
     };
@@ -1018,6 +1057,19 @@ const endingEl = $id('ending');
   function init() {
     load();
     buildStatBar();
+    // 主菜单空闲时静默预加载首批事件场景图，缓解开局图片黑底等待
+    const _warmScenes = () => {
+      try {
+        (D.events || []).slice(0, 6).forEach((e, i) => {
+          later(() => preloadImg(RES.scene(e.id)), i * 300);
+        });
+      } catch (err) {}
+    };
+    if (typeof requestIdleCallback === "function") {
+      requestIdleCallback(_warmScenes, { timeout: 2500 });
+    } else {
+      later(_warmScenes, 1500);
+    }
     document.addEventListener("click", (e) => {
       if (e.target && e.target.closest && e.target.closest("button") && window.Sfx) window.Sfx.click();
     });

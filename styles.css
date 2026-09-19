@@ -1910,3 +1910,22 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
     margin-right: auto;
   }
 }
+
+/* ===== 背景图加载体验：微光占位 + 淡入（慢网优化，r6）===== */
+@keyframes bgShimmer{
+  0%{background-position:120% 0;}
+  100%{background-position:-120% 0;}
+}
+/* 图片加载中的微光占位（事件横幅 / 成就弹窗），替代纯黑等待 */
+.bg-loading{
+  background-color:#161009 !important;
+  background-image:linear-gradient(110deg,
+    rgba(46,35,20,.55) 6%,
+    rgba(116,92,48,.42) 18%,
+    rgba(46,35,20,.55) 32%) !important;
+  background-size:200% 100% !important;
+  animation:bgShimmer 1.5s linear infinite;
+}
+/* 事件横幅：加载完成平滑淡入 */
+#event-scene{opacity:0;transition:opacity .55s ease;}
+#event-scene.bg-loaded{opacity:1;}
