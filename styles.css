@@ -741,8 +741,8 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   position:relative;
 }
 .advisor-portrait-area::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:16%;
-  background:linear-gradient(180deg, transparent, rgba(26,19,12,.7));
+  content:"";position:absolute;left:0;right:0;bottom:0;height:30%;
+  background:linear-gradient(180deg, transparent, rgba(26,19,12,.85));
   pointer-events:none;
 }
 .advisor-portrait{
@@ -752,8 +752,8 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   object-position:bottom center;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,.75));
   border-radius: 2px;
-  -webkit-mask-image:linear-gradient(180deg,#000 93%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 93%,transparent 100%);
+  -webkit-mask-image:linear-gradient(180deg,#000 80%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 80%,transparent 100%);
 }
 .advisor-content{
   flex:1;
@@ -1725,7 +1725,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   .philosopher-grid{grid-template-columns:1fr}
   .report-grid{grid-template-columns:1fr}
   /* 顾问面板手机端：立绘区固定高度不溢出，文字可见可滚 */
-  #advisor-panel{flex-direction:column;height:82vh}
+  #advisor-panel{flex-direction:column;height:auto;max-height:88vh}
   .advisor-portrait-area{flex:0 0 42%;height:42vh;padding:4px 12px 0;align-items:flex-end;justify-content:center}
   .advisor-portrait{max-height:100%;max-width:100%}
   .advisor-content{padding:10px 18px 15px;overflow-y:auto;justify-content:flex-start}
@@ -1741,6 +1741,8 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
     gap:16px;
   }
   #portrait-dock::-webkit-scrollbar{display:none}
+  #event-area::-webkit-scrollbar{display:none}
+  .screen::-webkit-scrollbar{display:none}
   /* 复检新增：成就弹窗与结局按钮在窄屏防溢出 */
   .achv-toast{width:92vw;height:auto;min-height:120px;padding:14px}
   .ending-hero{min-height:24vh}
