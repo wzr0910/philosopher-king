@@ -1081,6 +1081,8 @@ const endingEl = $id('ending');
       renderCodex(); showScreen("codex");
     };
     $id("btn-howto").onclick = () => openHowTo();
+    var cd = $id("btn-codex-desktop"); if (cd) cd.onclick = () => { window._fromGameToCodex=false; document.getElementById('btn-codex-back').textContent='返回展厅'; renderCodex(); showScreen("codex"); };
+    var hd = $id("btn-howto-desktop"); if (hd) hd.onclick = () => openHowTo();
     $id("btn-quit").onclick = () => toast("感谢游玩《哲人王》");
     $id("btn-codex-back").onclick = () => {
       if (window._fromGameToCodex) {
