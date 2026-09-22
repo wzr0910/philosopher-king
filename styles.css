@@ -1700,24 +1700,18 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
       url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
       #0A0806;
   }
-  .wall-frames{gap:6px;margin:0 0 0;justify-content:center;align-items:flex-end}
-  .wall-frame{width:5vw;min-width:24px;border-width:1px;opacity:.7}
-  .wall-frame:nth-child(1){opacity:.35;transform:translateY(10px) scale(.85)}
-  .wall-frame:nth-child(2){opacity:.55;transform:translateY(5px) scale(.92)}
-  .wall-frame:nth-child(3){opacity:.85;transform:translateY(0)}
-  .wall-frame:nth-child(4){opacity:.85;transform:translateY(0)}
-  .wall-frame:nth-child(5){opacity:.55;transform:translateY(5px) scale(.92)}
-  .wall-frame:nth-child(6){opacity:.35;transform:translateY(10px) scale(.85)}
-  .vitrine{margin:0 0 4px}
-  .crown-img{width:clamp(160px,30vw,220px)}
+  .wall-frames{gap:6px;margin:0 0 8px;justify-content:center;align-items:center}
+  .wall-frame{width:10vw;min-width:42px;border-width:2px;opacity:1;transform:none}
+  .vitrine{margin:0 0 6px;background:none;border:none}
+  .crown-img{width:clamp(150px,28vw,200px)}
   .plaque{font-size:10px;padding:3px 10px}
   .menu-title{margin-top:2px;font-size:30px}
-  .menu-sub{font-size:10px;margin-bottom:10px}
+  .menu-sub{font-size:11px;margin-bottom:12px}
   .menu-actions{gap:0;margin-top:4px;align-items:center;width:100%}
-  .hand-btn{width:65vw;height:44px;font-size:14px;letter-spacing:.3em;
-    background:linear-gradient(180deg,#8a6a30 0%,#5c4326 50%,#3a2a15 100%);
-    border:1px solid #d4af37;border-radius:6px;
-    box-shadow:0 4px 16px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,235,180,.3)}
+  .hand-btn{width:58vw;height:48px;font-size:14px;letter-spacing:.3em;
+    background:linear-gradient(180deg,rgba(60,45,25,.85) 0%,rgba(30,22,14,.9) 100%);
+    border:1px solid #d4af37;border-radius:3px;
+    box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,235,180,.2)}
   .hand-btn::before{display:none}
   .hand-btn::after{display:none}
   .continue-secondary{display:none}
