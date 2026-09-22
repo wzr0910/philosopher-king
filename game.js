@@ -149,7 +149,11 @@
     try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) {}
   }
   function anyRun() { return save.slots.some((s) => !!s); }
-  function refreshMenu() { const b = $id("btn-continue"); if (b) b.disabled = !anyRun(); }
+  function refreshMenu() {
+    var b = $id("btn-continue"); if (b) b.disabled = !anyRun();
+    var nb = $id("btn-new");
+    if (nb) nb.textContent = anyRun() ? "继续议会" : "开启哲思";
+  }
 
   // ---------- 屏幕切换 ----------
   function showScreen(id) {
