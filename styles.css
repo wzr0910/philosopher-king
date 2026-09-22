@@ -1725,7 +1725,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   .philosopher-grid{grid-template-columns:1fr}
   .report-grid{grid-template-columns:1fr}
   /* 顾问面板手机端：立绘区固定高度不溢出，文字可见可滚 */
-  #advisor-panel{flex-direction:column;height:auto;max-height:92vh}
+  #advisor-panel{flex-direction:column;height:auto;max-height:calc(92vh - 70px);bottom:70px}
   .advisor-portrait-area{flex:0 0 auto;height:260px;padding:4px 12px 0;align-items:flex-end;justify-content:center}
   .advisor-portrait{max-height:100%;max-width:100%}
   .advisor-content{padding:8px 18px 10px;overflow-y:auto;justify-content:flex-start}
