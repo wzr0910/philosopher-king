@@ -1708,12 +1708,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   .menu-title{margin-top:2px;font-size:30px}
   .menu-sub{font-size:11px;margin-bottom:12px}
   .menu-actions{gap:0;margin-top:4px;align-items:center;width:100%}
-  .hand-btn{width:58vw;height:48px;font-size:14px;letter-spacing:.3em;
-    background:linear-gradient(180deg,rgba(60,45,25,.85) 0%,rgba(30,22,14,.9) 100%);
-    border:1px solid #d4af37;border-radius:3px;
-    box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,235,180,.2)}
-  .hand-btn::before{display:none}
-  .hand-btn::after{display:none}
+  .hand-btn{width:120px;height:110px;font-size:14px;letter-spacing:.25em}
   .continue-secondary{display:none}
   .menu-secondary{display:none}
   .corner-actions{display:flex;position:fixed;left:0;right:0;bottom:40px;justify-content:space-between;padding:0 20px;z-index:50;pointer-events:none}
