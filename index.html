@@ -5,16 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>哲人王</title>
   <meta name="theme-color" content="#1A1410" />
+  <!-- 首屏内联 loading：纯 CSS，不等任何外部资源，用户打开立刻看到暖褐底+微光 -->
+  <style>
+    #boot{position:fixed;inset:0;z-index:99999;background:#1A1410;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease;}
+    #boot.done{opacity:0;pointer-events:none;}
+    #boot .gem{width:46px;height:46px;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%,#F0D089,#B8862E 60%,#6B4416);
+      box-shadow:0 0 24px rgba(240,208,137,.45),0 0 60px rgba(184,134,46,.25);
+      animation:bootPulse 1.6s ease-in-out infinite;}
+    @keyframes bootPulse{0%,100%{transform:scale(.92);opacity:.7}50%{transform:scale(1);opacity:1}}
+  </style>
+  <div id="boot"><div class="gem"></div></div>
+  <!-- Google Fonts 异步加载，不阻塞首屏渲染（国内线路 fonts.googleapis.com 常慢） -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap"></noscript>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="哲人王" />
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E5%93%B2%E4%BA%BA%E7%8E%8B%22%2C%22short_name%22%3A%22%E5%93%B2%E4%BA%BA%E7%8E%8B%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231A1410%22%2C%22theme_color%22%3A%22%231A1410%22%2C%22start_url%22%3A%22.%22%7D" />
   <!-- 标题字体 Cinzel 走 Google Fonts CDN；离线或 CDN 失败时自动降级为本地衬线字体 -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=audit_r6" />
+  <link rel="stylesheet" href="styles.css?v=audit_r7" />
 </head>
 <body>
   <div id="app">
@@ -32,14 +46,14 @@
       <div class="museum-bg"></div>
       <div class="floor"></div>
 
-      <!-- 墙上六幅画 -->
+      <!-- 墙上六幅画：data-bg 延迟加载，不等图片不阻塞首屏 -->
       <div class="wall-frames">
-        <div class="wall-frame" style="background-image:url('assets/portraits/plato.webp')"></div>
-        <div class="wall-frame" style="background-image:url('assets/portraits/machiavelli.webp')"></div>
-        <div class="wall-frame" style="background-image:url('assets/portraits/laozi.webp')"></div>
-        <div class="wall-frame" style="background-image:url('assets/portraits/hobbes.webp')"></div>
-        <div class="wall-frame" style="background-image:url('assets/portraits/rousseau.webp')"></div>
-        <div class="wall-frame" style="background-image:url('assets/portraits/confucius.webp')"></div>
+        <div class="wall-frame" data-bg="assets/portraits/plato.webp"></div>
+        <div class="wall-frame" data-bg="assets/portraits/machiavelli.webp"></div>
+        <div class="wall-frame" data-bg="assets/portraits/laozi.webp"></div>
+        <div class="wall-frame" data-bg="assets/portraits/hobbes.webp"></div>
+        <div class="wall-frame" data-bg="assets/portraits/rousseau.webp"></div>
+        <div class="wall-frame" data-bg="assets/portraits/confucius.webp"></div>
       </div>
 
       <!-- 中央皇冠展柜 -->
@@ -192,10 +206,24 @@
 
   </div>
 
-  <script src="data.js?v=audit_r6"></script>
-  <script src="engine.js?v=audit_r6"></script>
-  <script src="audio.js?v=audit_r6"></script>
-  <script src="game.js?v=audit_r6"></script>
+  <script src="data.js?v=audit_r7"></script>
+  <script src="engine.js?v=audit_r7"></script>
+  <script src="audio.js?v=audit_r7"></script>
+  <script src="game.js?v=audit_r7"></script>
+
+  <script>
+    // 首屏 loading：window load 后淡出；若 load 迟迟不触发，4 秒后强制淡出
+    window.addEventListener('load', function(){ setTimeout(function(){ document.getElementById('boot').classList.add('done'); }, 300); });
+    setTimeout(function(){ document.getElementById('boot').classList.add('done'); }, 4000);
+
+    // 墙画立绘延迟加载：DOM 就绪后再请求，不阻塞首屏文字/按钮
+    document.querySelectorAll('.wall-frame[data-bg]').forEach(function(el){
+      var src = el.getAttribute('data-bg');
+      var img = new Image();
+      img.onload = function(){ el.style.backgroundImage = "url('" + src + "')"; };
+      img.src = src;
+    });
+  </script>
 
   <script>
     // 尘埃粒子已合并到 game.js（原先此处造 24 个、game.js 又造 30 个，主菜单叠了 54 个）
