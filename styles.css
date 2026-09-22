@@ -200,6 +200,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
 .menu-secondary{
   display:flex;gap:12px;margin-top:14px;
 }
+.corner-actions{display:none}
 .exhibit-btn{
   min-width:clamp(130px,12vw,160px);padding:10px 20px;
   background:linear-gradient(180deg,rgba(45,34,22,.85) 0%,rgba(25,18,12,.9) 100%);
