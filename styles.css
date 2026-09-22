@@ -1705,7 +1705,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   .top-actions .btn.small svg{width:15px;height:15px}
 
   /* 事件图：手机上矮一点，不要像黑块 */
-  #event-scene{height:clamp(140px,22vh,220px);border-width:5px;margin-bottom:14px}
+  /* event-scene 高度回退：窄屏下先沿用桌面 30vh，避免渲染异常 */
   #event-area{padding:12px 16px 120px}
   #event-title{font-size:20px;padding-bottom:8px}
   #event-desc{font-size:13.5px;line-height:1.9}
