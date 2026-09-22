@@ -1713,7 +1713,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   .plaque{font-size:10px;padding:3px 10px}
   .menu-title{margin-top:2px;font-size:30px}
   .menu-sub{font-size:10px;margin-bottom:10px}
-  .menu-actions{gap:0;margin-top:4px;align-items:center}
+  .menu-actions{gap:0;margin-top:4px;align-items:center;width:100%}
   .hand-btn{width:65%;height:44px;font-size:14px;letter-spacing:.3em;
     background:linear-gradient(180deg,#8a6a30 0%,#5c4326 50%,#3a2a15 100%);
     border:1px solid #d4af37;border-radius:6px;
