@@ -1700,7 +1700,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
       url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
       #0A0806;
   }
-  .wall-frames{gap:2px;margin:0 0 8px;justify-content:center;align-items:center;perspective:600px}
+  .wall-frames{display:none}
   .wall-frame{width:11vw;min-width:44px;border-width:2px;opacity:1;transition:all .3s ease}
   .wall-frame:nth-child(1){opacity:.35;transform:scale(.75) translateX(6px) rotateY(20deg)}
   .wall-frame:nth-child(2){opacity:.6;transform:scale(.88) translateX(3px) rotateY(10deg)}
