@@ -1699,8 +1699,10 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
       url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
       #0A0806;
   }
-  .wall-frames{gap:6px;margin-bottom:4px}
-  .crown-hero{margin:8px 0}
+  .wall-frames{gap:6px;margin:0 0 16px}
+  .vitrine{margin:4px 0 12px}
+  .menu-title{margin-top:8px}
+  .menu-actions{gap:16px;margin-top:12px}
   .wall-frame{width:11vw;min-width:40px;border-width:2px}
   .menu-title{font-size:32px}
   .menu-sub{font-size:11px}
