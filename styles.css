@@ -1700,8 +1700,14 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
       url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
       #0A0806;
   }
-  .wall-frames{gap:6px;margin:0 0 8px;justify-content:center;align-items:center}
-  .wall-frame{width:10vw;min-width:42px;border-width:2px;opacity:1;transform:none}
+  .wall-frames{gap:2px;margin:0 0 8px;justify-content:center;align-items:center;perspective:600px}
+  .wall-frame{width:11vw;min-width:44px;border-width:2px;opacity:1;transition:all .3s ease}
+  .wall-frame:nth-child(1){opacity:.35;transform:scale(.75) translateX(6px) rotateY(20deg)}
+  .wall-frame:nth-child(2){opacity:.6;transform:scale(.88) translateX(3px) rotateY(10deg)}
+  .wall-frame:nth-child(3){opacity:1;transform:scale(1) rotateY(0)}
+  .wall-frame:nth-child(4){opacity:1;transform:scale(1) rotateY(0)}
+  .wall-frame:nth-child(5){opacity:.6;transform:scale(.88) translateX(-3px) rotateY(-10deg)}
+  .wall-frame:nth-child(6){opacity:.35;transform:scale(.75) translateX(-6px) rotateY(-20deg)}
   .vitrine{margin:0 0 6px;background:none;border:none}
   .crown-img{width:clamp(150px,28vw,200px)}
   .plaque{font-size:10px;padding:3px 10px}
