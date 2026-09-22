@@ -1693,16 +1693,18 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   /* 主界面背景：手机竖屏裁上面，遮罩减淡，防横向滚动 */
   #menu{
     overflow-x:hidden;
-    justify-content:space-evenly;
+    justify-content:space-between;
+    padding-top:12px;
+    padding-bottom:16px;
     background:
       linear-gradient(180deg, rgba(10,8,6,.55) 0%, rgba(10,8,6,.4) 40%, rgba(10,8,6,.85) 100%),
       url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
       #0A0806;
   }
-  .wall-frames{gap:6px;margin:0 0 16px}
-  .vitrine{margin:4px 0 12px}
-  .menu-title{margin-top:8px}
-  .menu-actions{gap:16px;margin-top:12px}
+  .wall-frames{gap:6px;margin:0 0 10px}
+  .vitrine{margin:0 0 8px}
+  .menu-title{margin-top:4px}
+  .menu-actions{gap:14px;margin-top:8px}
   .wall-frame{width:11vw;min-width:40px;border-width:2px}
   .menu-title{font-size:32px}
   .menu-sub{font-size:11px}
