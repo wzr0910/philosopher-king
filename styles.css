@@ -243,16 +243,16 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   font-size:clamp(15px,1.5vw,21px);letter-spacing:.14em;line-height:2.1;
   opacity:0;animation:fadeUp .9s ease forwards;
 }
-.intro-line:nth-child(1){animation-delay:.3s}
-.intro-line:nth-child(2){animation-delay:1.4s}
-.intro-line:nth-child(3){animation-delay:2.6s;color:var(--gold-hi);font-style:italic;font-family:var(--serif-en)}
+.intro-line:nth-child(1){animation-delay:.8s}
+.intro-line:nth-child(2){animation-delay:2.8s}
+.intro-line:nth-child(3){animation-delay:4.8s;color:var(--gold-hi);font-style:italic;font-family:var(--serif-en)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 #intro{cursor:pointer}
 .intro-skip{
   position:absolute;bottom:13%;left:0;right:0;text-align:center;
   font-size:13px;letter-spacing:.4em;text-indent:.4em;
   color:rgba(212,184,92,.78);
-  opacity:0;animation:fadeUp .8s ease 3.4s forwards;
+  opacity:0;animation:fadeUp .8s ease 6.5s forwards;
   pointer-events:none;
 }
 @media (prefers-reduced-motion: reduce){.intro-skip{animation:none;opacity:.8}}
@@ -741,8 +741,8 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   position:relative;
 }
 .advisor-portrait-area::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:50%;
-  background:linear-gradient(180deg, transparent, #1A130C);
+  content:"";position:absolute;left:0;right:0;bottom:0;height:26%;
+  background:linear-gradient(180deg, transparent, rgba(26,19,12,.85));
   pointer-events:none;
 }
 .advisor-portrait{
@@ -752,8 +752,8 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   object-position:bottom center;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,.75));
   border-radius: 2px;
-  -webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 70%,transparent 100%);
+  -webkit-mask-image:linear-gradient(180deg,#000 86%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 86%,transparent 100%);
 }
 .advisor-content{
   flex:1;
@@ -1720,7 +1720,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   #advisor-panel{flex-direction:column;height:82vh}
   .advisor-portrait-area{flex:0 0 34%;height:34vh;padding:8px 12px 0;align-items:flex-end;justify-content:center}
   .advisor-portrait{max-height:100%;max-width:100%}
-  .advisor-content{padding:12px 18px 90px;overflow-y:auto;justify-content:flex-start}
+  .advisor-content{padding:12px 18px 70px;overflow-y:auto;justify-content:flex-start}
   .advisor-content::before{display:none}
   .advisor-name{font-size:20px}
   .advisor-text{font-size:13.5px;line-height:1.85;padding:12px 14px;margin-bottom:14px}
@@ -1728,9 +1728,9 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   /* 底部圆章横排滚动 */
   #portrait-dock{
     overflow-x:auto;
-    justify-content:flex-start;
-    padding:10px 12px;
-    gap:10px;
+    justify-content:space-evenly;
+    padding:10px 16px;
+    gap:12px;
   }
   #portrait-dock::-webkit-scrollbar{display:none}
   /* 复检新增：成就弹窗与结局按钮在窄屏防溢出 */
