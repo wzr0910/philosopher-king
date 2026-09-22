@@ -42,7 +42,7 @@
 
   // ---------- 集中配置：魔法数字统一收口（F5）----------
   const TUNING = {
-    INTRO_MS: 8000,
+    INTRO_MS: 999999,
     TOAST_MS: 1400,
     TYPE_CHAR_MS: 28,
     TYPE_PARA_GAP_MS: 60,

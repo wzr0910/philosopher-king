@@ -1690,6 +1690,14 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
    移动端
    ============================================================ */
 @media (max-width:720px){
+  /* 主界面背景：手机竖屏裁上面，遮罩减淡，防横向滚动 */
+  #menu{
+    overflow-x:hidden;
+    background:
+      linear-gradient(180deg, rgba(10,8,6,.55) 0%, rgba(10,8,6,.4) 40%, rgba(10,8,6,.85) 100%),
+      url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
+      #0A0806;
+  }
   .wall-frames{gap:6px}
   .wall-frame{width:11vw;min-width:40px;border-width:2px}
   .menu-title{font-size:32px}
