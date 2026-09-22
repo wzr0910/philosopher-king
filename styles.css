@@ -1714,7 +1714,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   .menu-title{margin-top:2px;font-size:30px}
   .menu-sub{font-size:11px;margin-bottom:12px}
   .menu-actions{gap:0;margin-top:4px;align-items:center;width:100%}
-  .hand-btn{width:120px;height:110px;font-size:14px;letter-spacing:.25em;border-radius:10px}
+  .hand-btn{width:180px;height:46px;font-size:14px;letter-spacing:.25em;border-radius:6px;padding:8px 20px}
   .continue-secondary{display:none}
   .menu-secondary{display:none}
   .corner-actions{display:flex;position:fixed;left:0;right:0;bottom:40px;justify-content:space-between;padding:0 20px;z-index:50;pointer-events:none}
