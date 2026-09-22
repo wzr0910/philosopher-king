@@ -13,7 +13,7 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;height:100%;overflow:hidden}
-body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
+body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);overflow-x:hidden;width:100%}
 #app{height:100%;position:relative}
 /* height 用 100dvh 并保留 100vh 回退：手机浏览器地址栏收缩时 100vh 会偏大，
    导致页面底部露出一截空白（即常见的「底部黑边」）。dvh 会跟随可视高度变化。 */
@@ -243,16 +243,16 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink)}
   font-size:clamp(15px,1.5vw,21px);letter-spacing:.14em;line-height:2.1;
   opacity:0;animation:fadeUp .9s ease forwards;
 }
-.intro-line:nth-child(1){animation-delay:.8s}
-.intro-line:nth-child(2){animation-delay:2.8s}
-.intro-line:nth-child(3){animation-delay:4.8s;color:var(--gold-hi);font-style:italic;font-family:var(--serif-en)}
+.intro-line:nth-child(1){animation-delay:1.5s}
+.intro-line:nth-child(2){animation-delay:3.8s}
+.intro-line:nth-child(3){animation-delay:6.0s;color:var(--gold-hi);font-style:italic;font-family:var(--serif-en)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 #intro{cursor:pointer}
 .intro-skip{
   position:absolute;bottom:13%;left:0;right:0;text-align:center;
   font-size:13px;letter-spacing:.4em;text-indent:.4em;
   color:rgba(212,184,92,.78);
-  opacity:0;animation:fadeUp .8s ease 6.5s forwards;
+  opacity:0;animation:fadeUp .8s ease 8.0s forwards;
   pointer-events:none;
 }
 @media (prefers-reduced-motion: reduce){.intro-skip{animation:none;opacity:.8}}
