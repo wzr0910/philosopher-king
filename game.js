@@ -359,6 +359,19 @@
     persist();
     showScreen("game");
     renderEvent();
+    // 首次进入引导：任何存档都没有的新玩家，开第一局前弹一次（可跳过）
+    const firstTime = !save.slots.some((s, i) => i !== slotIdx && !!s) && !save.global.guideSeen;
+    if (firstTime) showGuide();
+  }
+  function showGuide() {
+    const ov = $id("guide-overlay");
+    if (ov) ov.classList.remove("hidden");
+  }
+  function hideGuide() {
+    const ov = $id("guide-overlay");
+    if (ov) ov.classList.add("hidden");
+    save.global.guideSeen = true;
+    persist();
   }
   function resumeGame(slotIdx) {
     if (!save.slots[slotIdx]) { toast("该存档为空"); return; }
@@ -1097,6 +1110,7 @@ const endingEl = $id('ending');
       }
     };
     $id("btn-slots-back").onclick = () => { refreshMenu(); showScreen("menu"); };
+    const guideBtn = $id("btn-guide-start"); if (guideBtn) guideBtn.onclick = () => hideGuide();
     $id("btn-history-back").onclick = () => showScreen("game");
     $id("btn-open-history").onclick = (e) => { e.stopPropagation(); renderHistory(); showScreen("history"); };
     $id("btn-open-status").onclick = (e) => {

@@ -1974,3 +1974,15 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
 /* 事件横幅：加载完成平滑淡入 */
 #event-scene{opacity:0;transition:opacity .55s ease;}
 #event-scene.bg-loaded{opacity:1;}
+
+/* ==========================================================
+   首次进入引导浮层
+   ---------------------------------------------------------- */
+#guide-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(16,10,5,.85);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+#guide-overlay.hidden{display:none}
+.guide-card{max-width:520px;width:100%;background:linear-gradient(180deg,#3A2A18 0%,#221609 100%);border:1px solid rgba(212,184,92,.45);border-radius:14px;padding:30px 28px 26px;box-shadow:0 18px 60px rgba(0,0,0,.55);color:var(--parchment);text-align:center}
+.guide-card .codex-title{margin-top:0}
+.guide-list{margin:20px 0 4px;text-align:left}
+.guide-list p{margin:14px 0;font-size:16px;line-height:1.7;color:var(--parchment)}
+.guide-list b{color:var(--gold-hi)}
+@media (max-width:480px){.guide-list p{font-size:15px}}
