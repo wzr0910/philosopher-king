@@ -1110,18 +1110,16 @@ const endingEl = $id('ending');
   function init() {
     load();
     buildStatBar();
-    // 主菜单空闲时静默预加载首批事件场景图，缓解开局图片黑底等待
+    // 主菜单空闲时静默预加载全部事件场景图，开局/换轮秒出图（webp 每张约30KB，20张并行很快）
     const _warmScenes = () => {
       try {
-        (D.events || []).slice(0, 6).forEach((e, i) => {
-          later(() => preloadImg(RES.scene(e.id)), i * 300);
-        });
+        (D.events || []).forEach((e) => { preloadImg(RES.scene(e.id)); });
       } catch (err) {}
     };
     if (typeof requestIdleCallback === "function") {
-      requestIdleCallback(_warmScenes, { timeout: 2500 });
+      requestIdleCallback(_warmScenes, { timeout: 1000 });
     } else {
-      later(_warmScenes, 1500);
+      later(_warmScenes, 800);
     }
     document.addEventListener("click", (e) => {
       if (e.target && e.target.closest && e.target.closest("button") && window.Sfx) window.Sfx.click();
