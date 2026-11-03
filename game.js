@@ -985,6 +985,8 @@ const endingEl = $id('ending');
     const ov = _overlay;
     _overlay = null;
     ov.classList.remove("show");
+    // H7 防御：立即释放点击，防止延迟移除被 clearTimers 清掉后残留遮罩卡死
+    ov.style.pointerEvents = "none";
     later(function () { ov.remove(); }, 320);
   }
 
@@ -1026,7 +1028,17 @@ const endingEl = $id('ending');
     openOverlay(panel, function (ov) {
       bindSettings(ov);
       ov.querySelector("#ov-continue").onclick = function () { closeOverlay(); };
-      ov.querySelector("#ov-quit").onclick = function () { closeOverlay(); persist(); refreshMenu(); showScreen("menu"); };
+      ov.querySelector("#ov-quit").onclick = function () {
+        // H7 修复：不能先 closeOverlay() 再 showScreen()。closeOverlay 用 later()
+        // 注册「320ms 后移除浮层」的定时器，而 showScreen 会 clearTimers() 把它清掉，
+        // 导致全屏遮罩（.ingame-overlay, fixed inset:0 z-index:9999, 无 pointer-events:none）
+        // 永久残留拦截所有点击。先同步销毁浮层 DOM，再切屏。
+        persist();
+        refreshMenu();
+        ov.remove();
+        _overlay = null;
+        showScreen("menu");
+      };
     });
   }
   function openHowTo() {

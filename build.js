@@ -18,10 +18,6 @@ html = html.replace(
 [
   "data.js",
   "engine.js",
-  "portraits.js",
-  "portraits-data.js",
-  "scenes.js",
-  "scenes-data.js",
   "audio.js",
   "game.js",
 ].forEach((f) => {

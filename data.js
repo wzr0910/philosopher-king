@@ -24,15 +24,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/plato_calm.png",
-        "happy": "assets/philosophers/plato_happy.png",
-        "serious": "assets/philosophers/plato_serious.png",
-        "angry": "assets/philosophers/plato_angry.png",
-        "mock": "assets/philosophers/plato_mock.png",
-        "worry": "assets/philosophers/plato_worry.png"
-      }
+      ]
     },
     {
       "id": "machiavelli",
@@ -49,15 +41,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/machiavelli_calm.png",
-        "happy": "assets/philosophers/machiavelli_happy.png",
-        "serious": "assets/philosophers/machiavelli_serious.png",
-        "angry": "assets/philosophers/machiavelli_angry.png",
-        "mock": "assets/philosophers/machiavelli_mock.png",
-        "worry": "assets/philosophers/machiavelli_worry.png"
-      }
+      ]
     },
     {
       "id": "laozi",
@@ -74,15 +58,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/laozi_calm.png",
-        "happy": "assets/philosophers/laozi_happy.png",
-        "serious": "assets/philosophers/laozi_serious.png",
-        "angry": "assets/philosophers/laozi_angry.png",
-        "mock": "assets/philosophers/laozi_mock.png",
-        "worry": "assets/philosophers/laozi_worry.png"
-      }
+      ]
     },
     {
       "id": "hobbes",
@@ -99,15 +75,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/hobbes_calm.png",
-        "happy": "assets/philosophers/hobbes_happy.png",
-        "serious": "assets/philosophers/hobbes_serious.png",
-        "angry": "assets/philosophers/hobbes_angry.png",
-        "mock": "assets/philosophers/hobbes_mock.png",
-        "worry": "assets/philosophers/hobbes_worry.png"
-      }
+      ]
     },
     {
       "id": "rousseau",
@@ -124,15 +92,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/rousseau_calm.png",
-        "happy": "assets/philosophers/rousseau_happy.png",
-        "serious": "assets/philosophers/rousseau_serious.png",
-        "angry": "assets/philosophers/rousseau_angry.png",
-        "mock": "assets/philosophers/rousseau_mock.png",
-        "worry": "assets/philosophers/rousseau_worry.png"
-      }
+      ]
     },
     {
       "id": "confucius",
@@ -149,15 +109,7 @@ window.GAME_DATA = {
         "angry",
         "mock",
         "worry"
-      ],
-      "portrait": {
-        "calm": "assets/philosophers/confucius_calm.png",
-        "happy": "assets/philosophers/confucius_happy.png",
-        "serious": "assets/philosophers/confucius_serious.png",
-        "angry": "assets/philosophers/confucius_angry.png",
-        "mock": "assets/philosophers/confucius_mock.png",
-        "worry": "assets/philosophers/confucius_worry.png"
-      }
+      ]
     }
   ],
   "events": [
@@ -4105,7 +4057,7 @@ window.GAME_DATA = {
       "condition": {
         "stats": {
           "财富": {
-            "min": 62
+            "min": 75
           }
         },
         "behavior": null
