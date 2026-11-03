@@ -352,7 +352,31 @@
   }
 
   function startNewGame(slotIdx) {
-    if (save.slots[slotIdx] && !confirm("存档 " + (slotIdx + 1) + " 已有进度，确定覆盖开始新游戏？")) return;
+    // H8：覆盖确认从浏览器原生 confirm 改为游戏内浮层（与游戏菜单同风格，
+    // 避免系统对话框破坏沉浸感）。有进度才弹确认，空槽直接开局。
+    if (save.slots[slotIdx]) {
+      const panel =
+        '<div class="ingame-title">覆盖确认</div>' +
+        '<div class="ingame-body">' +
+        "<p>存档 " + (slotIdx + 1) + " 已有进度，确定覆盖开始新游戏？</p>" +
+        '<p class="ingame-warn">此操作将永久覆盖该存档的当前进度。</p>' +
+        "</div>" +
+        '<button class="ingame-btn danger" id="ov-confirm-overwrite">覆盖并开始</button>' +
+        '<button class="ingame-btn" id="ov-cancel-overwrite">取 消</button>';
+      openOverlay(panel, function (ov) {
+        ov.querySelector("#ov-confirm-overwrite").onclick = function () {
+          // 同步销毁浮层再开局，避免 showScreen 清掉延迟移除定时器导致遮罩残留（同 H7 修复）
+          ov.remove();
+          _overlay = null;
+          beginNewRun(slotIdx);
+        };
+        ov.querySelector("#ov-cancel-overwrite").onclick = function () { closeOverlay(); };
+      });
+      return;
+    }
+    beginNewRun(slotIdx);
+  }
+  function beginNewRun(slotIdx) {
     save.slots[slotIdx] = newRun();
     save.activeSlot = slotIdx;
     save.run = save.slots[slotIdx];

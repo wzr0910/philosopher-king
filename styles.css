@@ -1877,6 +1877,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
 }
 .ingame-body h4{font-size:15px;color:#e8c96b;margin:18px 0 8px;letter-spacing:.1em;}
 .ingame-body p{margin:0 0 8px;}
+.ingame-warn{color:#ff9c8c;font-size:13px;margin-top:2px;}
 .ingame-body .tag{
   display:inline-block;padding:1px 8px;margin:0 2px;
   border:1px solid rgba(212,175,95,.6);border-radius:3px;
