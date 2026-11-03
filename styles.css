@@ -32,7 +32,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
   flex-direction:column;
   background:
     linear-gradient(180deg, rgba(10,8,6,.65) 0%, rgba(10,8,6,.45) 45%, rgba(10,8,6,.9) 100%),
-    url('assets/scenes/museum_hall.jpg') center center / cover no-repeat,
+    url('assets/scenes/museum_hall.webp') center center / cover no-repeat,
     #0A0806;
   position:relative;color:var(--parchment);
   overflow-y:auto;-webkit-overflow-scrolling:touch;
@@ -932,7 +932,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
 #slots{
   background:
     linear-gradient(180deg, rgba(26,20,16,.88) 0%, rgba(26,20,16,.95) 100%),
-    url('assets/scenes/museum_hall.jpg') center/cover;
+    url('assets/scenes/museum_hall.webp') center/cover;
   color:var(--parchment);
   overflow-y:auto;
   align-items:center;
@@ -1619,7 +1619,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
 #history{
   background:
     linear-gradient(180deg, rgba(20,15,10,.88) 0%, rgba(20,15,10,.92) 100%),
-    url('assets/scenes/history_bg.jpg') center/cover fixed;
+    url('assets/scenes/history_bg.webp') center/cover fixed;
   color:var(--parchment);
   overflow-y:auto;
   display:none;
@@ -1698,7 +1698,7 @@ body{font-family:var(--serif-cn);background:var(--bg-deep);color:var(--ink);over
     padding-top:16px;
     background:
       linear-gradient(180deg, rgba(10,8,6,.55) 0%, rgba(10,8,6,.4) 40%, rgba(10,8,6,.85) 100%),
-      url('assets/scenes/museum_hall.jpg') center top / cover no-repeat,
+      url('assets/scenes/museum_hall.webp') center top / cover no-repeat,
       #0A0806;
   }
   .wall-frames{display:none}

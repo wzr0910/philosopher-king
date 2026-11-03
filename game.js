@@ -57,16 +57,16 @@
   // ---------- 资源路径集中映射（I4）----------
   const RES = {
     portrait: (id) => "assets/portraits/" + id + ".webp",
-    scene: (id) => "assets/scenes/" + id + ".jpg",
-    ending: (id) => "assets/scenes/ending_" + id + ".jpg",
+    scene: (id) => "assets/scenes/" + id + ".webp",
+    ending: (id) => "assets/scenes/ending_" + id + ".webp",
     achv: {
-      first_crown: "achv_first_crown.jpg",
-      iron_fist: "achv_iron_fist.jpg",
-      free_wind: "achv_free_wind.jpg",
-      fickle: "achv_fickle.jpg",
-      polymath: "achv_polymath.jpg",
-      virtuous_rule: "achv_virtuous_rule.jpg",
-      six_sages: "achv_six_sages.jpg"
+      first_crown: "achv_first_crown.webp",
+      iron_fist: "achv_iron_fist.webp",
+      free_wind: "achv_free_wind.webp",
+      fickle: "achv_fickle.webp",
+      polymath: "achv_polymath.webp",
+      virtuous_rule: "achv_virtuous_rule.webp",
+      six_sages: "achv_six_sages.webp"
     }
   };
 
@@ -280,7 +280,7 @@
         later(() => {
           // 单个成就渲染失败不得影响其余成就，也不得阻断游戏
           try {
-            const bgFile = RES.achv[item.id] || 'achv_first_crown.jpg';
+            const bgFile = RES.achv[item.id] || 'achv_first_crown.webp';
             const bgUrl = "assets/scenes/" + bgFile;
             const toast = document.createElement("div");
             toast.className = "achv-toast bg-loading";
